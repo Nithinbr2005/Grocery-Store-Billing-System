@@ -1,0 +1,6 @@
+Rice,50
+Sugar,40
+Milk,30
+Bread,25
+Oil,120
+Eggs,6
