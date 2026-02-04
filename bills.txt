@@ -5,3 +5,12 @@ Oil x 2 = 240
 TOTAL AMOUNT = 240
 -------------------------
 
+
+------ GROCERY RECEIPT ------
+Eggs x 4 = 24
+-----------------------------
+TOTAL = 24
+Payment Method: UPI
+Payment Status: SUCCESS
+-----------------------------
+

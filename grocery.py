@@ -44,6 +44,29 @@ def remove_item(cart):
         print("Item not in cart!")
 
 
+# ---------- PAYMENT SYSTEM ----------
+def payment(amount):
+    print("\nTotal Amount: Rs.", amount)
+    print("1. Cash")
+    print("2. UPI")
+
+    choice = input("Choose payment method: ")
+
+    if choice == "1":
+        print("Cash Payment Successful!")
+        return "Cash"
+
+    elif choice == "2":
+        upi = input("Enter UPI ID: ")
+        print("Processing...")
+        print("UPI Payment Successful!")
+        return "UPI"
+
+    else:
+        print("Invalid Payment Option!")
+        return None
+
+
 # ---------- GENERATE BILL ----------
 def generate_bill(cart, items):
     if len(cart) == 0:
@@ -51,19 +74,27 @@ def generate_bill(cart, items):
         return
 
     total = 0
-    bill = "\n------ GROCERY BILL ------\n"
+    bill = "\n------ GROCERY RECEIPT ------\n"
 
     for item, qty in cart.items():
         price = items[item] * qty
         total += price
         bill += f"{item} x {qty} = {price}\n"
 
-    bill += "-------------------------\n"
-    bill += f"TOTAL AMOUNT = {total}\n"
-    bill += "-------------------------\n"
+    bill += "-----------------------------\n"
+    bill += f"TOTAL = {total}\n"
 
-    print(bill)
-    save_bill(bill)
+    method = payment(total)
+
+    if method:
+        bill += f"Payment Method: {method}\n"
+        bill += "Payment Status: SUCCESS\n"
+        bill += "-----------------------------\n"
+        print(bill)
+        save_bill(bill)
+        cart.clear()
+    else:
+        print("Payment Failed!")
 
 
 # ---------- MAIN PROGRAM ----------
@@ -74,8 +105,8 @@ while True:
     print("\n===== GROCERY STORE SYSTEM =====")
     print("1. Show Items")
     print("2. Add Item to Cart")
-    print("3. Remove Item from Cart")
-    print("4. Generate Bill")
+    print("3. Remove Item")
+    print("4. Generate Bill & Pay")
     print("5. Exit")
 
     choice = input("Enter choice: ")
